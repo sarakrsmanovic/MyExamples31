@@ -6,71 +6,68 @@
         </button>
     </div>
 </div>
-
-<!--
-    <div class="btn-group-vertical">
-    <button type="button" class="btn btn-primary">Home</button>
-    <div class="btn-group dropright">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-        Basic Operations
-        </button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="incrementer">Incrementer</a>
-            <a class="dropdown-item" href="#">Smartphone</a>
-        </div>
-    </div>
-    <button type="button" class="btn btn-primary">Fetch Data</button>
-        <div class="dropdown-menu">
-            <a class="dropdown-item" href="fetchdata">Fetch Weather</a>
-        </div></div>
--->
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
+    <ul class="flex-column">
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="incrementer">
-                <span class="oi oi-plus" aria-hidden="true"></span> Incrementer
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" @onclick="ToggleSubmenuBasicTasks">
+                <span class="oi oi-file" aria-hidden="true"></span> Basic Tasks
             </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="decrementer">
-                <span class="oi oi-minus" aria-hidden="true"></span> Decrementer
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="incdec">
-                <span class="oi oi-bolt" aria-hidden="true"></span> Increment-decrement
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="hello-world">
-                <span class="oi oi-compass" aria-hidden="true"></span> Hello world
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="operations">
-                <span class="oi oi-arrow-top" aria-hidden="true"></span> Operations
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
+            @if( expandSubMenuBasicTasks){
+            <ul class="nav flex-column">
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="incrementer">
+                        <span class="oi oi-plus" aria-hidden="true"></span> Incrementer
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="decrementer">
+                        <span class="oi oi-minus" aria-hidden="true"></span> Decrementer
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="incdec">
+                        <span class="oi oi-bolt" aria-hidden="true"></span> Incr-decr
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="hello-world">
+                        <span class="oi oi-compass" aria-hidden="true"></span> Hello world
+                    </NavLink>
+                </li>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="operations">
+                        <span class="oi oi-arrow-top" aria-hidden="true"></span> Operations
+                    </NavLink>
+                </li>
+            </ul>
+            }
+        </li>
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="fetchdata">
                 <span class="oi oi-briefcase" aria-hidden="true"></span> Fetch data
             </NavLink>
-        </div>
-    </nav>
+        </li>
+    </ul>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private bool expandSubMenuBasicTasks = false;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void ToggleSubmenuBasicTasks()
+    {
+        expandSubMenuBasicTasks = !expandSubMenuBasicTasks;
     }
 }
